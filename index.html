@@ -15,6 +15,20 @@
 </head>
 <body>
 
+<!-- ============ メニュー(右上に固定。どこからでも各章・先頭へ移動) ============ -->
+<button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel" aria-label="メニューを開く">
+  <span></span><span></span><span></span>
+</button>
+<nav class="menu" id="menuPanel" aria-label="メニュー" hidden>
+  <a href="#top">ページの先頭へ</a>
+  <a href="#bloom">開花情報</a>
+  <a href="#events">催し物</a>
+  <a href="#map">マップ</a>
+  <a href="#course">モデルコース</a>
+  <a href="#stamp">スタンプハイク</a>
+  <a href="#bus">バス時刻表</a>
+</nav>
+
 <!-- ============ 01 トップ ============ -->
 <header class="hero" id="top">
   <img class="bg" src="img/hero.jpg" alt="梅の花が咲く小径" width="1800" height="1350">
@@ -89,10 +103,11 @@
       <figcaption>地図をタップすると、大きく開きます。花の中心が黄色の梅林がスタンプ会場です。</figcaption>
     </figure>
 
-    <div class="groves" aria-label="8つの梅林">
-      <span class="stamp">遊歩道梅林</span><span class="stamp">関所梅林</span><span class="stamp">天神梅林</span>
-      <span>湯の花梅林</span><span class="stamp">するさし梅林</span><span>木下沢梅林</span><span>小仏梅林</span><span>荒井梅林</span>
-    </div>
+    <ul class="groves" aria-label="8つの梅林">
+      <li class="stamp">遊歩道梅林</li><li class="stamp">関所梅林</li><li class="stamp">天神梅林</li>
+      <li>湯の花梅林</li><li class="stamp">するさし梅林</li><li>木下沢梅林</li><li>小仏梅林</li><li>荒井梅林</li>
+    </ul>
+    <p class="small muted legend"><i class="dot stamp"></i>スタンプ会場　<i class="dot"></i>そのほかの梅林</p>
 
     <table class="dist">
       <caption>梅林間のおよその距離(目安)</caption>
@@ -209,5 +224,20 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  var btn = document.getElementById("menuBtn"), menu = document.getElementById("menuPanel");
+  function setOpen(open) {
+    menu.hidden = !open;
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+    btn.classList.toggle("is-open", open);
+  }
+  btn.addEventListener("click", function (e) { e.stopPropagation(); setOpen(menu.hidden); });
+  menu.addEventListener("click", function (e) { if (e.target.tagName === "A") setOpen(false); });
+  document.addEventListener("click", function (e) { if (!menu.hidden && !menu.contains(e.target)) setOpen(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { setOpen(false); btn.focus(); } });
+})();
+</script>
 </body>
 </html>

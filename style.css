@@ -114,9 +114,33 @@ table.dist { width: 100%; border-collapse: collapse; margin-top: 22px; font-fami
 table.dist caption { text-align: left; font-weight: 700; padding-bottom: 8px; font-family: var(--serif); font-size: 17px; }
 table.dist th, table.dist td { text-align: left; padding: 9px 4px; border-bottom: 1px solid rgba(125,138,85,.35); }
 table.dist td:last-child { text-align: right; white-space: nowrap; color: var(--beni); font-weight: 700; }
-.groves { margin-top: 20px; font-family: var(--sans); font-size: 15px; }
-.groves span { display: inline-block; margin: 3px 4px 3px 0; padding: 3px 12px; border-radius: 999px; border: 1.5px solid #d98aa6; background: var(--white); }
-.groves span.stamp { border-color: var(--beni); font-weight: 700; }
+/* 梅林名の一覧: 枠なし(ボタンに見えないよう、花の色の点+文字だけ) */
+.groves { list-style: none; padding: 0; margin: 22px 0 0; font-family: var(--sans); font-size: 15px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; }
+.groves li { position: relative; padding-left: 20px; }
+.groves li::before, .dot { content: ""; display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: #d98aa6; }
+.groves li::before { position: absolute; left: 2px; top: .5em; }
+.groves li.stamp, .dot.stamp { font-weight: 700; }
+.groves li.stamp::before, .dot.stamp { background: radial-gradient(circle, #f2c400 0 28%, var(--beni) 32%); }
+.legend { margin-top: 10px; }
+.legend .dot { margin: 0 6px 0 0; vertical-align: -1px; }
+
+/* ---- メニュー(右上固定) ---- */
+.menu-btn { position: fixed; top: 12px; right: 12px; z-index: 50; width: 46px; height: 46px; border: 0; border-radius: 50%;
+  background: rgba(253,251,244,.94); box-shadow: 0 2px 10px rgba(56,50,42,.28); cursor: pointer; padding: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+.menu-btn span { display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .2s, opacity .2s; }
+.menu-btn.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn.is-open span:nth-child(2) { opacity: 0; }
+.menu-btn.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.menu-btn:focus-visible, .menu a:focus-visible { outline: 3px solid var(--beni); outline-offset: 2px; }
+.menu { position: fixed; top: 66px; right: 12px; z-index: 49; width: min(260px, calc(100vw - 24px));
+  background: var(--white); border-radius: 14px; box-shadow: 0 8px 28px rgba(56,50,42,.30); padding: 8px; }
+.menu[hidden] { display: none; }
+.menu a { display: block; padding: 13px 14px; border-radius: 10px; text-decoration: none; color: var(--ink);
+  font-family: var(--sans); font-weight: 500; font-size: 16px; }
+.menu a:first-child { color: var(--beni); font-weight: 700; border-bottom: 1px solid rgba(125,138,85,.3); border-radius: 10px 10px 0 0; margin-bottom: 4px; }
+.menu a:hover { background: var(--paper); }
 .photo { margin-top: 24px; border-radius: 14px; overflow: hidden; }
 .photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 45%; }
 
