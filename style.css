@@ -1,0 +1,148 @@
+/* 第48回 高尾梅郷梅まつり 詳細サイト（ポスター c6「歩く春」に揃えた配色）
+   値の出典: ../design/tokens.md */
+:root {
+  --paper: #f4ecdd;
+  --paper-deep: #eadfca;
+  --ink: #38322a;
+  --beni: #b14a52;
+  --moss: #7d8a55;
+  --muted: #7a7160;      /* tokens の #8a8170 より少し濃くして小さい文字の可読性を確保 */
+  --white: #fdfbf4;
+  --serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --sans: "Noto Sans JP", "Yu Gothic", "Hiragino Sans", Meiryo, sans-serif;
+  --latin: "Lato", "Noto Sans JP", sans-serif;
+  --gutter: 20px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 12px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.8;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--beni); }
+h1, h2, h3, p, ul, ol, dl, figure { margin: 0; }
+ul, ol { padding-left: 1.3em; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+.small { font-family: var(--sans); font-size: 14px; line-height: 1.7; }
+.muted { color: var(--muted); }
+.latin { font-family: var(--latin); letter-spacing: .08em; }
+
+/* ---- ヒーロー ---- */
+.hero {
+  position: relative; color: #fff; height: clamp(420px, 78svh, 600px);
+  display: flex; align-items: flex-end; background: #3a3a2a;
+}
+.hero img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero::before { /* 暗いスクリム: 白文字の可読性 */
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(20,16,10,.55) 0%, rgba(20,16,10,.05) 38%, rgba(20,16,10,.15) 62%, rgba(20,16,10,.72) 100%);
+}
+.hero .inner { position: relative; z-index: 2; width: 100%; padding: 28px var(--gutter) 36px; max-width: 760px; margin: 0 auto; }
+.hero .top { position: absolute; z-index: 2; top: 22px; left: var(--gutter); right: var(--gutter); max-width: 720px; margin: 0 auto; }
+.hero .kai { font-family: var(--sans); font-size: 15px; font-weight: 500; letter-spacing: .12em; }
+.hero .en { font-family: var(--latin); font-size: 11px; letter-spacing: .16em; opacity: .95; margin-top: 2px; }
+.hero h1 { font-weight: 700; font-size: clamp(30px, 8.4vw, 46px); line-height: 1.35; letter-spacing: .06em; text-shadow: 0 2px 14px rgba(0,0,0,.35); }
+.hero .sub { margin-top: 10px; font-size: 16px; letter-spacing: .08em; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+
+/* ---- 会期カード ---- */
+.info { margin-top: -20px; position: relative; z-index: 3; }
+.card { background: var(--white); border-radius: 14px; padding: 22px 22px; box-shadow: 0 6px 22px rgba(56,50,42,.12); }
+.info dl { display: grid; grid-template-columns: 4.6em 1fr; gap: 6px 10px; font-family: var(--sans); }
+.info dt { color: var(--moss); font-weight: 700; font-size: 14px; padding-top: 2px; }
+.info dd { margin: 0; font-weight: 500; }
+.info .date { font-family: var(--serif); font-size: 18px; grid-column: 1 / -1; white-space: nowrap; margin-bottom: 6px; font-weight: 700; letter-spacing: .04em; }
+.notice {
+  margin-top: 16px; padding: 14px 16px; border-left: 5px solid var(--beni); background: #f9e9e6;
+  font-family: var(--sans); font-weight: 700; font-size: 15px; line-height: 1.7;
+}
+.lead { margin: 30px 0 6px; font-size: 17px; line-height: 2; }
+
+/* ---- 目次ボタン ---- */
+.toc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0 8px; }
+.toc a {
+  display: block; text-align: center; text-decoration: none; padding: 12px 6px; border-radius: 999px;
+  background: var(--white); color: var(--ink); border: 1.5px solid var(--beni);
+  font-family: var(--sans); font-weight: 700; font-size: 14.5px;
+}
+.toc a:hover, .toc a:focus-visible { background: var(--beni); color: #fff; }
+
+/* ---- 章 ---- */
+section.chap { padding: 52px 0 6px; }
+section.chap + section.chap { border-top: 1px solid rgba(125,138,85,.35); margin-top: 40px; }
+.chap h2 {
+  font-size: 26px; font-weight: 700; letter-spacing: .08em; margin-bottom: 4px; display: flex; align-items: center; gap: 12px;
+}
+.chap h2::before { content: ""; width: 6px; height: 1.1em; background: var(--beni); border-radius: 3px; flex: none; }
+.chap .eng { font-family: var(--latin); font-size: 11px; letter-spacing: .22em; color: var(--moss); margin: 0 0 18px 18px; }
+.chap p + p { margin-top: 12px; }
+
+.btn {
+  display: inline-block; margin-top: 16px; padding: 13px 26px; border-radius: 999px; text-decoration: none;
+  background: var(--beni); color: #fff; font-family: var(--sans); font-weight: 700; font-size: 15px;
+}
+.btn:hover, .btn:focus-visible { filter: brightness(.92); }
+.btn.pending { background: transparent; color: var(--muted); border: 1.5px dashed var(--muted); cursor: default; }
+.btns { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+
+.pending-note { font-family: var(--sans); font-size: 14px; color: var(--muted); background: var(--paper-deep); padding: 12px 14px; border-radius: 10px; margin-top: 14px; }
+
+/* ---- 催し物・コース・会場カード ---- */
+.cards { display: grid; gap: 14px; margin-top: 16px; }
+.cards .card { padding: 18px 20px; }
+.card h3 { font-size: 18px; letter-spacing: .04em; line-height: 1.5; }
+.card .tag {
+  display: inline-block; font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  background: var(--beni); color: #fff; padding: 2px 10px; border-radius: 999px; margin-bottom: 8px;
+}
+.card .tag.moss { background: var(--moss); }
+.card ol { margin-top: 10px; font-family: var(--sans); font-size: 15px; }
+.card .note { margin-top: 10px; font-family: var(--sans); font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+
+/* ---- 地図 ---- */
+.map { margin-top: 18px; }
+.map a { display: block; border-radius: 14px; }
+.map img { width: 100%; border-radius: 14px; box-shadow: 0 4px 16px rgba(56,50,42,.10); background: var(--white); }
+.map figcaption { font-family: var(--sans); font-size: 13px; color: var(--muted); margin-top: 8px; }
+table.dist { width: 100%; border-collapse: collapse; margin-top: 22px; font-family: var(--sans); font-size: 15px; }
+table.dist caption { text-align: left; font-weight: 700; padding-bottom: 8px; font-family: var(--serif); font-size: 17px; }
+table.dist th, table.dist td { text-align: left; padding: 9px 4px; border-bottom: 1px solid rgba(125,138,85,.35); }
+table.dist td:last-child { text-align: right; white-space: nowrap; color: var(--beni); font-weight: 700; }
+.groves { margin-top: 20px; font-family: var(--sans); font-size: 15px; }
+.groves span { display: inline-block; margin: 3px 4px 3px 0; padding: 3px 12px; border-radius: 999px; border: 1.5px solid #d98aa6; background: var(--white); }
+.groves span.stamp { border-color: var(--beni); font-weight: 700; }
+.photo { margin-top: 24px; border-radius: 14px; overflow: hidden; }
+.photo img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 45%; }
+
+/* ---- スタンプハイク ---- */
+.stamp-mark { max-width: 280px; margin: 0 0 14px; mix-blend-mode: multiply; }
+.rules { font-family: var(--sans); font-size: 15px; margin-top: 12px; }
+
+/* ---- フッター ---- */
+footer { margin-top: 64px; background: var(--paper-deep); padding: 36px 0 44px; }
+footer dl { display: grid; grid-template-columns: 3em 1fr; gap: 8px 12px; font-family: var(--sans); font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+footer dt { font-weight: 700; color: var(--ink); }
+footer dd { margin: 0; }
+footer a { color: inherit; white-space: nowrap; }
+.logos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 26px 0 8px; }
+.logos .l { background: var(--white); border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: center; height: 92px; }
+.logos img { max-height: 68px; width: auto; max-width: 100%; object-fit: contain; }
+.foot-note { margin-top: 20px; font-family: var(--sans); font-size: 13px; color: var(--muted); }
+
+@media (min-width: 720px) {
+  :root { --gutter: 32px; }
+  body { font-size: 17px; }
+  .hero { height: 560px; }
+  .toc { grid-template-columns: repeat(3, 1fr); }
+  .cards.two { grid-template-columns: 1fr 1fr; }
+  .logos { grid-template-columns: repeat(4, 1fr); }
+  .logos .l { height: 100px; }
+  .btns { flex-direction: row; gap: 12px; flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
